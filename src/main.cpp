@@ -49,7 +49,8 @@ int main(void)
     GLFWwindow* window;
     sound::FMODDriver sound_driver;     
     
-    // init sound     
+    // init sound 
+    sound_driver.testSound();
 
     glfwSetErrorCallback(error_callback);
 

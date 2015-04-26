@@ -1,8 +1,14 @@
 #include <sound/FMODDriver.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string>
+
+const char *sound_test = "resources/sounds/redflag.mp3";
 
 namespace sound {
+
+   
+
     FMODDriver::FMODDriver() {
         FMOD_RESULT result;
 
@@ -25,6 +31,9 @@ namespace sound {
     
     void FMODDriver::testSound() {
         FMOD::Sound *audio;
-        system->createSound("Audio.mp3", FMOD_DEFAULT, 0, &audio);
+        system->createSound(sound_test, FMOD_DEFAULT, 0, &audio);
+
+        FMOD::Channel *channel;
+        system->playSound(audio, NULL, false, &channel);
     }
 }
