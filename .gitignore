@@ -34,6 +34,5 @@
 build/*
 install/*
 
-!fmod/*
-!glfw/*
-!include/*
+!fmod/api/lowlevel/lib/x86_64/libfmod.so
+!fmod/api/lowlevel/lib/x86_64/libfmodL.so
