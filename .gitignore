@@ -30,3 +30,6 @@
 
 # lol emacs
 *~
+
+build/*
+install/*
