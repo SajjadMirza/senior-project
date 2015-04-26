@@ -33,3 +33,7 @@
 
 build/*
 install/*
+
+!fmod/*
+!glfw/*
+!include/*
