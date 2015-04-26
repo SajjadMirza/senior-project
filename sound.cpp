@@ -1,6 +1,6 @@
 #include "sound.h"
 
-int Sound::initSound() {
+int FMODDriver::initSound() {
     FMOD_RESULT result;
     
     // Create FMOD interface object
@@ -62,12 +62,12 @@ int Sound::initSound() {
     FMODErrorCheck(result);
 }
 
-void Sound::FMODErrorCheck(FMOD_RESULT result) {
+void FMODDriver::FMODErrorCheck(FMOD_RESULT result) {
     std::cout << "FMOD error! (" << result << ") " << FMOD_ErrorString(result) << std::endl;
     exit(-1);
 }
 
-void Sound::FMODVersionCheck() {
+void FMODDriver::FMODVersionCheck() {
     if (version < FMOD_VERSION) {
         std::cout << "Error! You are using an old version of FMOD " << version << ". This program requires " << FMOD_VERSION << std::endl;
         exit(-1);

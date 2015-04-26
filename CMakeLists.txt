@@ -1,11 +1,10 @@
+# top-level
+
 cmake_minimum_required (VERSION 2.8)
 project (Tutorial)
 
-add_executable(myapp tutorial.cxx)
-install(TARGETS myapp DESTINATION bin) 
 
-
-include_directories(include/eigen)
+include_directories(include)
 #include_directories(irrKlang-64bit/include)
 include_directories(fmod/api/lowlevel/inc)
 
@@ -14,8 +13,9 @@ find_library(FMOD NAMES fmod fmodL PATHS fmod/api/lowlevel/lib/x86_64)
 
 add_subdirectory(glfw)
 include_directories(glfw/include)
-target_link_libraries(myapp glfw ${GLFW_LIBRARIES} ${IRRKLANG_LIBRARY} ${FMOD})
 
+
+add_subdirectory(src)
 
 
 
