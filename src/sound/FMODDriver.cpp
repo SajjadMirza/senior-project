@@ -1,7 +1,4 @@
-#include <sound/FMODDriver.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string>
+#include <sound/FMODDriver.hpp>
 
 const char *sound_test = "resources/sounds/redflag.mp3";
 

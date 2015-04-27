@@ -1,22 +1,11 @@
-// C & C++ standard libraries
-#include <stdlib.h>
-#include <stdio.h>
-#include <iostream>
-#include <string>
+#include <common.hpp>
 
-// GLFW
-#include <GLFW/glfw3.h>
 
-// Eigen
-#include <Eigen/Dense>
 
-// ASSIMP
-#include <assimp/Importer.hpp>      // C++ importer interface
-#include <assimp/scene.h>           // Output data structure
-#include <assimp/postprocess.h>     // Post processing flags
+
 
 // Internal headers
-#include <sound/FMODDriver.h>
+#include <sound/FMODDriver.hpp>
 
 static void error_callback(int error, const char* description)
 {
@@ -55,7 +44,7 @@ int main(void)
     // test sound 
     sound_driver.testSound();
 
-    if (!import_object("")) {
+    if (!import_object("resources/models/orange/Orange.dae")) {
        std::cerr << "IMPORT FAILED" << std::endl;
        exit(EXIT_FAILURE);
     }
