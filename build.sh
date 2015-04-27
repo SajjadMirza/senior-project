@@ -1,8 +1,5 @@
 #!/bin/bash
 
-rm -rf build
-rm -rf install
-
 mkdir build
 cd build
 
