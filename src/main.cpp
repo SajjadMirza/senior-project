@@ -1,16 +1,26 @@
+// C & C++ standard libraries
 #include <stdlib.h>
 #include <stdio.h>
+#include <iostream>
+#include <string>
 
+// GLFW
 #include <GLFW/glfw3.h>
 
+// Eigen
 #include <Eigen/Dense>
 
+// ASSIMP
+#include <assimp/Importer.hpp>      // C++ importer interface
+#include <assimp/scene.h>           // Output data structure
+#include <assimp/postprocess.h>     // Post processing flags
 
+// Internal headers
 #include <sound/FMODDriver.h>
 
 static void error_callback(int error, const char* description)
 {
-    fputs(description, stderr);
+   std::cerr << description << std::endl;
 }
 
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -19,18 +29,45 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
         glfwSetWindowShouldClose(window, GL_TRUE);
 }
 
+// function imports object using assimp
+bool import_object(const std::string& file) {
+   Assimp::Importer importer;
+   const aiScene *scene = importer.ReadFile(file,
+                                            aiProcess_CalcTangentSpace       | 
+                                            aiProcess_Triangulate            |
+                                            aiProcess_JoinIdenticalVertices  |
+                                            aiProcess_SortByPType);
+   
+   if (!scene) {
+      std::cerr << importer.GetErrorString() << std::endl;
+      return false;
+   }
+
+   
+   return true;
+}
+
 int main(void)
 {
     GLFWwindow* window;
     sound::FMODDriver sound_driver;     
     
-    // init sound 
+    // test sound 
     sound_driver.testSound();
+
+    if (!import_object("")) {
+       std::cerr << "IMPORT FAILED" << std::endl;
+       exit(EXIT_FAILURE);
+    }
+    else {
+       std::cout << "successful import" << std::endl;
+    }
 
     glfwSetErrorCallback(error_callback);
 
-    if (!glfwInit())
+    if (!glfwInit()) {
         exit(EXIT_FAILURE);
+    }
 
     window = glfwCreateWindow(640, 480, "Simple example", NULL, NULL);
     if (!window)
